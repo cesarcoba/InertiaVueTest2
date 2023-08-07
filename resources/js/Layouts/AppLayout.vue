@@ -232,6 +232,24 @@ const logout = () => {
                         <ResponsiveNavLink :href="route('post')" :active="route().current('post')">
                                 Posts
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('user.index')" :active="route().current('user.index')">
+                                Users
+                            </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('departments.index')" :active="route().current('departments.index')">
+                                Departments
+                            </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('employees.index')" :active="route().current('employees.index')">
+                                Employees
+                            </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('graphic')" :active="route().current('graphic')">
+                                Graphic
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('reports')" :active="route().current('reports')">
+                                Reports
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('testforms')" :active="route().current('testforms')">
+                                Testforms
+                            </ResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->
