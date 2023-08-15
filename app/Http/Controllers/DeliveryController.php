@@ -58,6 +58,7 @@ class DeliveryController extends Controller
      */
     public function edit(Delivery $delivery)
     {
+        //dd("ok");
         return Inertia::render('Deliveries/Edit', ['delivery' => $delivery]);
     }
 
@@ -66,10 +67,13 @@ class DeliveryController extends Controller
      */
     public function update(Request $request, Delivery $delivery)
     {
-        $request->session()->flash('flash.banner', 'Yay it works!');
-        $request->session()->flash('flash.bannerStyle', 'danger');
+        $request->session()->flash('flash.banner', 'Delivery updated!');
+        $request->session()->flash('flash.bannerStyle', 'success');
 
-        $request->validate(['name' => 'required|max:30']);
+        $request->validate([
+            'name' => 'required|max:30',
+            'observation' => 'required|max:100'
+        ]);
         $delivery->update($request->all());
         return redirect('deliveries');
     }
