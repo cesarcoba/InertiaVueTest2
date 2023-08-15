@@ -14,6 +14,7 @@ class DeliveryController extends Controller
      */
     public function index()
     {
+        // dd("at the controller");
         $deliveries = Delivery::all();
 
         return Inertia::render('Deliveries/Index', ['deliveries' => $deliveries]);
@@ -24,7 +25,7 @@ class DeliveryController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Deliveries/Create');
     }
 
     /**
@@ -32,7 +33,16 @@ class DeliveryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:30',
+            'observation' => 'required|max:100'
+        ]);
+        // dump(auth()->user()->id);
+        // dd($request);
+        $delivery = new Delivery($request->input() + ['user_id' => auth()->user()->id]);
+
+        $delivery->save();
+        return redirect('deliveries');
     }
 
     /**
@@ -48,7 +58,7 @@ class DeliveryController extends Controller
      */
     public function edit(Delivery $delivery)
     {
-        //
+        return Inertia::render('Deliveries/Edit', ['delivery' => $delivery]);
     }
 
     /**
@@ -56,7 +66,12 @@ class DeliveryController extends Controller
      */
     public function update(Request $request, Delivery $delivery)
     {
-        //
+        $request->session()->flash('flash.banner', 'Yay it works!');
+        $request->session()->flash('flash.bannerStyle', 'danger');
+
+        $request->validate(['name' => 'required|max:30']);
+        $delivery->update($request->all());
+        return redirect('deliveries');
     }
 
     /**
@@ -64,6 +79,7 @@ class DeliveryController extends Controller
      */
     public function destroy(Delivery $delivery)
     {
-        //
+        $delivery->delete();
+        return redirect('deliveries');
     }
 }

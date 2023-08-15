@@ -1,5 +1,11 @@
 <script setup>
-import BaseInput from '@/Base/BaseInput.vue/'
+import BaseInput from '@/Base/BaseInput.vue/';
+import BaseInput2 from '@/Base/BaseInput2.vue/';
+import TextInput from '@/Components/TextInput.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import { ref } from "vue";
+
+const firstName = ref("");
 
 const saveValue = value => {
     alert(value)
@@ -9,7 +15,17 @@ const saveValue = value => {
 <template>
     <h1>Ejemplo Componentes</h1>
     <BaseInput @update="saveValue" />
+    <h3>base input 2</h3>
+
+     <BaseInput2 v-model="firstName" label="prueba" />
+
+        <p>{{ firstName }}</p>
     <h2>-----------</h2>
+    <InputLabel for="name" value="Department"></InputLabel>
+    <InputLabel for="name" >con slot</InputLabel>
+    <TextInput id="name" v-model="firstName" autofocus required type="text" class="mt-1 block ">
+    </TextInput>
+    <h4>-----------------</h4>
 
     <form @submit.prevent="onSubmit()" class="contact-form">
         <h3>

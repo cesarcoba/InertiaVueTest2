@@ -19,6 +19,6 @@ const saveValue = (event) => {
 
 <style scoped>
 input {
-    padding: 5px 8px;
+    padding: 5px 18px;
 }
 </style>

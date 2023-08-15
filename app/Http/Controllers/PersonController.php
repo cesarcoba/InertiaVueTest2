@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Person;
+use App\Models\Delivery;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use DB;
 
 class PersonController extends Controller
 {
@@ -13,7 +16,13 @@ class PersonController extends Controller
      */
     public function index()
     {
-        //
+        $people = Person::select('people.id', 'people.name', 'people.paternal', 'people.maternal', 'deliveries_id', 'deliveries.name as delivery')
+        ->join('deliveries', 'deliveries.id', '=', 'people.delivery_id')
+        ->paginate(10);
+
+        $deliveries = Delivery::all();
+
+        return Inertia::render('Employees/Index', ['people' => $people, 'deliveries' => $deliveries]);
     }
 
     /**

@@ -6,6 +6,8 @@ use Inertia\Inertia;
 use App\Models\Post;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\PersonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +58,8 @@ Route::middleware([
 
     Route::resource('departments', DepartmentController::class);
     Route::resource('employees', EmployeeController::class);
+    Route::resource('deliveries', DeliveryController::class);
+    Route::resource('people', PersonController::class);
     Route::get('graphic',[EmployeeController::class,'EmployeeByDepartment'])->name('graphic');
     Route::get('reports', [EmployeeController::class, 'reports'])->name('reports');
 

@@ -51,7 +51,7 @@ const logout = () => {
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
-                                <NavLink :href="route('test1')" :active="route().current('test1')">
+                                <!--NavLink :href="route('test1')" :active="route().current('test1')">
                                         test1
                                 </NavLink>
                                 <NavLink :href="route('test2')" :active="route().current('test2')">
@@ -62,7 +62,7 @@ const logout = () => {
                                 </NavLink>
                                 <NavLink :href="route('user.index')" :active="route().current('user.index')">
                                             Users
-                                </NavLink>
+                                </NavLink-->
                                 <NavLink :href="route('departments.index')" :active="route().current('departments.index')">
                                             Departments
                                 </NavLink>
@@ -75,12 +75,67 @@ const logout = () => {
                                 <NavLink :href="route('reports')" :active="route().current('reports')">
                                             Reports
                                 </NavLink>
-                                <NavLink :href="route('testforms')" :active="route().current('testforms')">
-                                            TestForms
+                                <NavLink :href="route('deliveries.index')" :active="route().current('deliveries.index')">
+                                                Deliveries
                                 </NavLink>
+                                <!--NavLink :href="route('testforms')" :active="route().current('testforms')">
+                                            TestForms
+                                </NavLink-->
+
                             </div>
                         </div>
+                        <!-- Tests -->
+                        <div class="hidden sm:flex sm:items-center sm:ml-6">
+                                <div class="ml-3 relative">
+                                    <!-- Teams Dropdown -->
+                                    <Dropdown align="right" width="60">
+                                        <template #trigger>
+                                            <span class="inline-flex rounded-md">
+                                                <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
+                                                    Tests
 
+                                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+                                                    </svg>
+                                                </button>
+                                            </span>
+                                        </template>
+
+                                        <template #content>
+                                            <div class="w-60">
+                                                <!-- Team Management -->
+                                                <template v-if="$page.props.jetstream.hasTeamFeatures">
+                                                    <div class="block px-4 py-2 text-xs text-gray-400">
+                                                        Some Tests
+                                                    </div>
+
+                                                    <DropdownLink :href="route('testforms')">
+                                                        Testforms
+                                                    </DropdownLink>
+                                                    <DropdownLink :href="route('test1')">
+                                                            Test1
+                                                    </DropdownLink>
+                                                    <DropdownLink :href="route('test2')">
+                                                            Test2
+                                                    </DropdownLink>
+                                                    <DropdownLink :href="route('post')">
+                                                            Posts
+                                                    </DropdownLink>
+
+                                                    <DropdownLink :href="route('user.index')">
+                                                        Users
+                                                    </DropdownLink>
+
+
+                                                </template>
+                                            </div>
+                                        </template>
+                                    </Dropdown>
+                                </div>
+
+
+                        </div>
+                        <!-- End Tests -->
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                             <div class="ml-3 relative">
                                 <!-- Teams Dropdown -->
