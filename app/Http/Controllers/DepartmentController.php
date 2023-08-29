@@ -17,6 +17,9 @@ class DepartmentController extends Controller
         //
         $departments = Department::all();
 
+        //API
+        //return response()->json($departments);
+
         return Inertia::render('Departments/Index',['departments'=>$departments]);
     }
 

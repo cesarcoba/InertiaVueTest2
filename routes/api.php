@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\PersonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +22,8 @@ use App\Models\Post;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('departments', DepartmentController::class);
+Route::resource('employees', EmployeeController::class);
+Route::resource('deliveries', DeliveryController::class);
+Route::resource('people', PersonController::class);

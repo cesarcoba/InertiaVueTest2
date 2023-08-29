@@ -16,13 +16,13 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $people = Person::select('people.id', 'people.name', 'people.paternal', 'people.maternal', 'deliveries_id', 'deliveries.name as delivery')
+        $people = Person::select('people.id', 'people.folio','people.name', 'people.paternal', 'people.maternal','people.municipality','people.amount','people.check_id', 'delivery_id', 'deliveries.name as delivery')
         ->join('deliveries', 'deliveries.id', '=', 'people.delivery_id')
         ->paginate(10);
 
         $deliveries = Delivery::all();
 
-        return Inertia::render('Employees/Index', ['people' => $people, 'deliveries' => $deliveries]);
+        return Inertia::render('People/Index', ['people' => $people, 'deliveries' => $deliveries]);
     }
 
     /**
@@ -38,7 +38,19 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'folio' => 'required|max:15',
+            'name' => 'required|max:150',
+            'paternal' => 'required|max:80',
+            'maternal' => 'required|max:80',
+            'delivery_id' => 'required|numeric',
+            'municipality' => 'required|max:15',
+            'amount' => 'required|numeric',
+            'check_id' => 'required|numeric',
+        ]);
+        $person = new Person($request->input() + ['user_id' => auth()->user()->id]);
+        $person->save();
+        return redirect('people');
     }
 
     /**
@@ -62,7 +74,19 @@ class PersonController extends Controller
      */
     public function update(Request $request, Person $person)
     {
-        //
+        $request->validate([
+            'folio' => 'required|max:15',
+            'name' => 'required|max:150',
+            'paternal' => 'required|max:80',
+            'maternal' => 'required|max:80',
+            'delivery_id' => 'required|numeric',
+            'municipality' => 'required|max:15',
+            'amount' => 'required|numeric',
+            'check_id' => 'required|numeric',
+        ]);
+        $person->update($request->input());
+
+        return redirect('people');
     }
 
     /**
@@ -70,6 +94,7 @@ class PersonController extends Controller
      */
     public function destroy(Person $person)
     {
-        //
+        $person->delete();
+        return redirect('people');
     }
 }
